@@ -1,0 +1,31 @@
+<form [formGroup]="loginForm">
+  <div class="grid gap-0 row-gap-3">
+    <div class="p-2 g-col-6">
+      <app-input
+        formControlName="username"
+        inputName="Username"
+        type="email"
+        label="Email"
+        placeholder="fulano(a)@email.com"
+        >
+      </app-input>
+    </div>
+    <div class="p-2 g-col-6">
+      <app-input
+        formControlName="password"
+        type="password"
+        label="Password"
+        placeholder="Sua senha">
+      </app-input>
+    </div>
+    <div class="p-2 g-col-6">
+      <div class="d-flex justify-content-between">
+        <app-button type="submit" prop-label="Login">
+        </app-button>
+        <app-button prop-label="Cadastrar">
+        </app-button>
+      </div>
+    </div>
+  </div>
+
+</form>
