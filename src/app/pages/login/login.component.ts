@@ -3,11 +3,11 @@ import { CardComponent } from '../../components/card/card.component';
 import { InputComponent } from '../../components/input/input.component';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '../../components/button/button.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ CardComponent, InputComponent, ButtonComponent ],
+  imports: [ CardComponent, InputComponent, ButtonComponent, ReactiveFormsModule ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -23,10 +23,11 @@ export class LoginComponent {
 
   onLogin(): void {
       console.log(this.loginForm.value);
+      this.router.navigate(['dashboard']);
   }
 
   onCadastro():void {
-    this.router.navigateByUrl('cadastro');
+    this.router.navigate(['cadastro']);
   }
 
 }

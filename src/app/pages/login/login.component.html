@@ -1,4 +1,31 @@
 <div class="d-flex justify-content-center mt-5">
   <app-card header="Login">
+    <form [formGroup]="loginForm">
+      <div class="grid gap-0 row-gap-3">
+        <div class="p-2 g-col-6">
+          <app-input
+            formControlName="username"
+            inputName="username"
+            type="email"
+            label="Email"
+            placeholder="fulano(a)@email.com">
+          </app-input>
+        </div>
+        <div class="p-2 g-col-6">
+          <app-input
+            formControlName="password"
+            type="password"
+            label="Password"
+            placeholder="Sua senha">
+          </app-input>
+        </div>
+        <div class="p-2 g-col-6">
+          <app-button prop-label="Login" (click-event)=" onLogin()"></app-button>
+        </div>
+        <div class="p-2 g-col-6">
+          <app-button prop-label="Cadastrar" (click-event)="onCadastro()"></app-button>
+        </div>
+      </div>
+    </form>
   </app-card>
 </div>

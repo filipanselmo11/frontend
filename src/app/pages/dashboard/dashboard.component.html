@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-center mt-5">
+  <div class="mr-2">
+    <app-button prop-label="Produto" (click-event)="openProdModal()"></app-button>
+    <app-dialog
+      header="Form de Cadastro de Produto"
+      position="left"
+      [visible]="prodVisible"
+      [style]="{ width: '25rem' }"
+      (close-modal)="closeProdModal()">
+        <form>
+          <h1>Form de cadastro de Produto</h1>
+        </form>
+    </app-dialog>
+  </div>
+  <div class="ml-5">
+    <app-button prop-label="Categoria" (click-event)="openCategModal()"></app-button>
+    <app-dialog
+      header="Form de Cadastro de Categoria"
+      position="right"
+      [visible]="categVisible"
+      [style]="{ width: '25rem' }"
+      (close-modal)="closeCategModal()">
+      <form>
+        <h1>
+          Form de cadastro de categoria
+        </h1>
+      </form>
+    </app-dialog>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <app-card header="Histórico de vendas">
+        <h1>Olá eu sou o histórico de vendas</h1>
+      </app-card>
+    </div>
+    <div class="col-md-6 mb-4">
+      <app-card header="Venda por categorias">
+        <app-chart type="doughnut" [data]="data1" [options]="options1">
+        </app-chart>
+      </app-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-4">
+      <app-card header="Produtos mais vendidos">
+        <app-chart type="bar" [data]="data2" [options]="options2">
+        </app-chart>
+      </app-card>
+    </div>
+  </div>
+</div>
