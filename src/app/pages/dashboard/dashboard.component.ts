@@ -3,15 +3,20 @@ import { CardComponent } from '../../components/card/card.component';
 import { ChartComponent } from '../../components/chart/chart.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { DialogComponent } from '../../components/dialog/dialog.component';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { InputComponent } from '../../components/input/input.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ CardComponent, ChartComponent, ButtonComponent, DialogComponent ],
+  imports: [ CardComponent, ChartComponent, ButtonComponent, DialogComponent, ReactiveFormsModule, InputComponent ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
+
+  categoryForm: FormGroup;
+  produtcForm: FormGroup;
 
   data1: any;
   options1: any;
@@ -20,6 +25,20 @@ export class DashboardComponent implements OnInit {
 
   prodVisible!: boolean;
   categVisible!: boolean;
+
+  constructor() {
+    this.categoryForm = new FormGroup({
+      description: new FormControl('', [Validators.required])
+    });
+
+    this.produtcForm = new FormGroup({
+      description: new FormControl('', [Validators.required]),
+      price: new FormControl(0, [Validators.required]),
+      amount: new FormControl(0, [Validators.required]),
+      category_id: new FormControl(0, [Validators.required])
+    });
+  }
+
 
   loadChart1(): void {
     const documentStyle = getComputedStyle(document.documentElement);
@@ -138,6 +157,14 @@ export class DashboardComponent implements OnInit {
 
   closeCategModal() {
     this.categVisible = false;
+  }
+
+  createProd() {
+    console.log(this.produtcForm.value);
+  }
+
+  createCateg() {
+    console.log(this.categoryForm.value);
   }
 
 }

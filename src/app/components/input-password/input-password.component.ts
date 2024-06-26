@@ -1,22 +1,22 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
-  selector: 'app-input',
+  selector: 'app-input-password',
   standalone: true,
-  imports: [ InputTextModule, ReactiveFormsModule ],
+  imports: [ PasswordModule, ReactiveFormsModule, FormsModule ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
+      useExisting: forwardRef(() => InputPasswordComponent),
       multi: true
     }
   ],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.css'
+  templateUrl: './input-password.component.html',
+  styleUrl: './input-password.component.css'
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputPasswordComponent implements ControlValueAccessor {
   @Input() placeholder!: string;
   @Input() label!: string;
   @Input() inputName!: string;

@@ -5,10 +5,10 @@
     </label>
   </div>
   <div class="ml-3">
-    <input
-      pInputText
+    <p-inputNumber
+      [inputId]="inputName"
       [placeholder]="placeholder"
-      [value]="value"
+      [(ngModel)]="value"
       (input)="onInput($event)"
     />
   </div>

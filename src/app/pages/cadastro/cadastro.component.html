@@ -6,7 +6,6 @@
           <app-input
             formControlName="name"
             inputName="name"
-            type="text"
             label="Name"
             placeholder="Seu nome">
           </app-input>
@@ -14,23 +13,20 @@
         <div class="p-2 g-col-6">
           <app-input
             formControlName="username"
-            type="email"
             label="Username"
             placeholder="Seu email">
           </app-input>
         </div>
         <div class="p-2 g-col-6">
-          <app-input
+          <app-input-password
             formControlName="password"
-            type="password"
             label="Password"
             placeholder="Sua senha">
-          </app-input>
+          </app-input-password>
         </div>
         <div class="p-2 g-col-6">
-          <div class="d-flex justify-content-between">
+          <div class="d-flex">
             <app-button prop-label="Cadastrar" (click-event)="onCadastro()"></app-button>
-            <!-- <app-button prop-label="Cadastrar" (click-event)="onCadastro()"></app-button> -->
           </div>
         </div>
       </div>

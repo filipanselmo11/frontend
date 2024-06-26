@@ -6,18 +6,16 @@
           <app-input
             formControlName="username"
             inputName="username"
-            type="email"
             label="Email"
-            placeholder="fulano(a)@email.com">
+            placeholder="Digite seu email">
           </app-input>
         </div>
         <div class="p-2 g-col-6">
-          <app-input
+          <app-input-password
             formControlName="password"
-            type="password"
+            inputName="password"
             label="Password"
-            placeholder="Sua senha">
-          </app-input>
+            placeholder="Digite sua senha"></app-input-password>
         </div>
         <div class="p-2 g-col-6">
           <app-button prop-label="Login" (click-event)=" onLogin()"></app-button>

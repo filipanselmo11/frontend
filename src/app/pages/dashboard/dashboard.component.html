@@ -1,32 +1,66 @@
-<div class="d-flex justify-content-center mt-5">
-  <div class="mr-2">
-    <app-button prop-label="Produto" (click-event)="openProdModal()"></app-button>
-    <app-dialog
-      header="Form de Cadastro de Produto"
-      position="left"
-      [visible]="prodVisible"
-      [style]="{ width: '25rem' }"
-      (close-modal)="closeProdModal()">
-        <form>
-          <h1>Form de cadastro de Produto</h1>
-        </form>
-    </app-dialog>
-  </div>
-  <div class="ml-5">
-    <app-button prop-label="Categoria" (click-event)="openCategModal()"></app-button>
-    <app-dialog
-      header="Form de Cadastro de Categoria"
-      position="right"
-      [visible]="categVisible"
-      [style]="{ width: '25rem' }"
-      (close-modal)="closeCategModal()">
-      <form>
-        <h1>
-          Form de cadastro de categoria
-        </h1>
-      </form>
-    </app-dialog>
-  </div>
+<div class="d-flex justify-content-center">
+  <app-button prop-label="Produto" (click-event)="openProdModal()"></app-button>
+  <app-dialog
+    header="Form de Cadastro de Produto"
+    position="left" [visible]="prodVisible"
+    [style]="{ width: '25rem' }"
+    (close-modal)="closeProdModal()">
+    <form [formGroup]="produtcForm">
+      <div class="grid gap-0 row-gap-3">
+        <div class="p-2 g-col-6">
+          <app-input
+            formControlName="description"
+            inputName="description"
+            label="Descrição"
+            placeholder="Descrição do produto">
+          </app-input>
+        </div>
+        <div class="p-2 g-col-6">
+          <app-input
+            formControlName="price"
+            inputName="price"
+            label="Preço"
+            placeholder="Preço do produto">
+          </app-input>
+        </div>
+        <div class="p-2 g-col-6">
+          <app-input
+            formControlName="amount"
+            inputName="amount"
+            label="Quantidade"
+            placeholder="Quantidade do produto">
+          </app-input>
+        </div>
+        <div class="p-2 g-col-6">
+          <app-button
+            prop-label="Cadastrar Produto"
+            (click-event)="createProd()"></app-button>
+        </div>
+      </div>
+    </form>
+  </app-dialog>
+  <app-button prop-label="Categoria" (click-event)="openCategModal()"></app-button>
+  <app-dialog header="Form de Cadastro de Categoria" position="right" [visible]="categVisible"
+    [style]="{ width: '25rem' }" (close-modal)="closeCategModal()">
+    <form [formGroup]="categoryForm">
+      <div class="grid gap-0 row-gap-3">
+        <div class="p-2 g-col-6">
+          <app-input
+            formControlName="description"
+            inputName="description"
+            label="Descrição"
+            placeholder="Descrição da categoria">
+          </app-input>
+        </div>
+        <div class="p-2 g-col-6">
+          <app-button
+            prop-label="Cadastrar Categoria"
+            (click-event)="createCateg()">
+          </app-button>
+        </div>
+      </div>
+    </form>
+  </app-dialog>
 </div>
 <div class="container mt-5">
   <div class="row">

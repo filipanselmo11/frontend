@@ -5,11 +5,12 @@
     </label>
   </div>
   <div class="ml-3">
-    <input
-      pInputText
+    <p-inputNumber
+      [inputId]="inputName"
+      [(ngModel)]="value"
+      mode="currency"
       [placeholder]="placeholder"
-      [value]="value"
-      (input)="onInput($event)"
-    />
+      [locale]="locale">
+    </p-inputNumber>
   </div>
 </div>
