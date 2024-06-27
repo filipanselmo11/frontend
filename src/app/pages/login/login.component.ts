@@ -24,17 +24,21 @@ export class LoginComponent {
   }
 
   onLogin(): void {
-    console.log(this.loginForm.value);
-    this.loginService.loginUser(
-      this.loginForm.value.username,
-      this.loginForm.value.password
-    ).subscribe((res) => {
-      console.log('RES ', res);
-      this.router.navigate(['dashboard']);
-    }, error => {
-      console.log('Error ', error)
-    });
+    this.router.navigate(['home']);
   }
+
+  // onLogin(): void {
+  //   console.log(this.loginForm.value);
+  //   this.loginService.loginUser(
+  //     this.loginForm.value.username,
+  //     this.loginForm.value.password
+  //   ).subscribe((res) => {
+  //     console.log('RES ', res);
+  //     this.router.navigate(['dashboard']);
+  //   }, error => {
+  //     console.error('Error ', error)
+  //   });
+  // }
 
   onCadastro():void {
     this.router.navigate(['cadastro']);

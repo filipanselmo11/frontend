@@ -5,12 +5,11 @@
     </label>
   </div>
   <div class="ml-3">
-    <p-inputNumber
-      [inputId]="inputName"
-      [(ngModel)]="value"
-      mode="currency"
+    <p-treeSelect
       [placeholder]="placeholder"
-      [locale]="locale">
-    </p-inputNumber>
+      [options]="options"
+      [(ngModel)]=value
+      (input)="onInput($event)"
+    />
   </div>
 </div>

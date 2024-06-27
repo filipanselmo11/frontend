@@ -1,63 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
 import { ChartComponent } from '../../components/chart/chart.component';
-import { ButtonComponent } from '../../components/button/button.component';
-import { DialogComponent } from '../../components/dialog/dialog.component';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { InputComponent } from '../../components/input/input.component';
-
+import { SalesService } from '../../services/sales.service';
+import { TableComponent } from '../../components/table/table.component';
+import { SalesResponse } from '../../types/sales';
+import { MenuComponent } from '../../components/menu/menu.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ CardComponent, ChartComponent, ButtonComponent, DialogComponent, ReactiveFormsModule, InputComponent ],
+  imports: [ CardComponent, ChartComponent, TableComponent, MenuComponent ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
 
-  categoryForm: FormGroup;
-  produtcForm: FormGroup;
-
   data1: any;
   options1: any;
   data2: any;
   options2: any;
+  sales!: SalesResponse[];
 
-  prodVisible!: boolean;
-  categVisible!: boolean;
-
-  constructor() {
-    this.categoryForm = new FormGroup({
-      description: new FormControl('', [Validators.required])
-    });
-
-    this.produtcForm = new FormGroup({
-      description: new FormControl('', [Validators.required]),
-      price: new FormControl(0, [Validators.required]),
-      amount: new FormControl(0, [Validators.required]),
-      category_id: new FormControl(0, [Validators.required])
-    });
+  constructor(private salesService: SalesService) {
   }
 
 
   loadChart1(): void {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-
     this.data1 = {
       labels: ['Eletrônicos', 'Livros e Mídia', 'Casa e Decoração', 'Brinquedos e Jogos'],
       datasets: [
         {
           data: [100, 50, 40, 30],
           backgroundColor: [
-            documentStyle.getPropertyValue('--blue-500'),
-            documentStyle.getPropertyValue('--yellow-500'),
-            documentStyle.getPropertyValue('--green-500')
+            '#D2556E',
+            '#0A82D2',
+            '#41A0A0',
+            '#D2AA4B'
           ],
           hoverBackgroundColor: [
-            documentStyle.getPropertyValue('--blue-400'),
-            documentStyle.getPropertyValue('--yellow-400'),
-            documentStyle.getPropertyValue('--green-400')
+            '#D2556E',
+            '#0A82D2',
+            '#41A0A0',
+            '#D2AA4B'
           ],
         }
       ]
@@ -67,7 +50,7 @@ export class DashboardComponent implements OnInit {
       plugins: {
         legend: {
           labels: {
-            color: textColor
+            color: '#D2AC49'
           }
         }
       }
@@ -75,11 +58,6 @@ export class DashboardComponent implements OnInit {
   }
 
   loadChart2(): void {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
     this.data2 = {
       labels: [
         'Smartphone Samsung Galaxy A03',
@@ -95,76 +73,47 @@ export class DashboardComponent implements OnInit {
       ],
       datasets: [
         {
-          backgroundColor: documentStyle.getPropertyValue('--blue-500'),
-          borderColor: documentStyle.getPropertyValue('--blue-500'),
-          data: [28, 48, 19, 86, 27, 90]
+          backgroundColor: [
+            '#0A82D2',
+            '#A50032',
+            '#2D6964',
+            '#EBF078',
+            '#78B91E',
+            '#3fa0a0',
+            '#2D6964',
+            '#008C69',
+            '#E1005F',
+            '#5A6EFF'],
+          data: [50, 49, 45, 38, 36, 22, 20, 19, 10, 8],
+          borderWidth: 1
         }
       ],
     };
 
     this.options2 = {
-      maintainAspectRatio: false,
-      aspectRatio: 0.8,
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
-          }
-        }
-      },
       scales: {
         x: {
-          ticks: {
-            color: textColorSecondary,
-            font: {
-              weight: 500
-            }
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
+          beginAtZero: true
         },
         y: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        },
-      },
+          beginAtZero: true
+        }
+      }
     };
+  }
+
+  getSales(): void {
+    this.salesService.getSales().subscribe((res) => {
+      console.log('REs ', res);
+      this.sales = res;
+    }, (error) => console.log(error));
   }
 
   ngOnInit(): void {
     this.loadChart1();
     this.loadChart2();
+    this.getSales();
   }
 
-  openProdModal() {
-    this.prodVisible = true;
-  }
-
-  closeProdModal() {
-    this.prodVisible = false;
-  }
-
-  openCategModal() {
-    this.categVisible = true;
-  }
-
-  closeCategModal() {
-    this.categVisible = false;
-  }
-
-  createProd() {
-    console.log(this.produtcForm.value);
-  }
-
-  createCateg() {
-    console.log(this.categoryForm.value);
-  }
 
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CadastroRequest } from '../types/cadastro';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CadastroService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createUser(name: string, username: string, password: string) {
+  createUser(name: string, username: string, password: string): Observable<CadastroRequest> {
     return this.httpClient.post<CadastroRequest>(`${this.baseURL}/user/create`, {
       name,
       username,

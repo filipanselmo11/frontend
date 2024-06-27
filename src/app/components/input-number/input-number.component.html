@@ -9,6 +9,9 @@
       [inputId]="inputName"
       [placeholder]="placeholder"
       [(ngModel)]="value"
+      [mode]="mode"
+      [minFractionDigits]="minFractionsDigits"
+      [maxFractionDigits]="maxFractionDigits"
       (input)="onInput($event)"
     />
   </div>

@@ -21,6 +21,9 @@ export class InputNumberComponent implements ControlValueAccessor {
   @Input() placeholder!: string;
   @Input() label!: string;
   @Input() inputName!: string;
+  @Input() mode?: any;
+  @Input() minFractionsDigits?: string;
+  @Input() maxFractionDigits?: string;
 
   value!: string;
 

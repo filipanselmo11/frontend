@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginRequest } from '../types/login';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,17 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
 
-  loginUser(username: string, password: string) {
+  loginUser(username: string, password: string): Observable<LoginRequest> {
+    const formData: FormData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
     return this.httpClient.post<LoginRequest>(`${this.baseURL}/user/login`, {
-      username,
-      password
-    })
+      formData
+    },{
+      headers: headers
+    });
   }
 }
