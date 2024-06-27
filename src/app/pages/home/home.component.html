@@ -38,6 +38,14 @@
             </app-input-number>
           </div>
           <div class="p-2 g-col-6">
+            <app-input
+              formControlName="image"
+              inputName="image"
+              label="Imagem"
+              placeholder="Url da imagem do produto">
+            </app-input>
+          </div>
+          <div class="p-2 g-col-6">
             <app-select
               formControlName="category_id"
               [options]="options"
@@ -45,7 +53,7 @@
               placeholder="Categoria do Produto"></app-select>
           </div>
           <div class="p-2 g-col-6">
-            <app-button prop-label="Cadastrar Produto"></app-button>
+            <app-button prop-label="Cadastrar Produto" (click-event)="createProduct()"></app-button>
           </div>
         </div>
       </form>
